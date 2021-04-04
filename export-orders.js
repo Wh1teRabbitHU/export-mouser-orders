@@ -6,12 +6,20 @@ const exporter = require('./src/exporter');
 const externalOptions = optionalRequire('./options.json') || {};
 
 const argumentOptions = yargs(hideBin(process.argv))
-	.command('> node export-orders --apiKey={API_KEY} [...options]',
+	.command('> node export-orders --orderApiKey={API_KEY} [...options]',
 			 'It fetch your orders and then exports the details into a csv file using the defaults')
 	.option({
-		apiKey: {
+		orderApiKey: {
 			type: 'string',
-			description: 'Your API key for your mouser account'
+			description: 'Your order API key for your mouser account'
+		},
+		searchApiKey: {
+			type: 'string',
+			description: 'Your search API key for your mouser account'
+		},
+		extendedSearch: {
+			type: 'boolean',
+			description: 'If this flag is true, then the script will fetch extended informations for the ordered items'
 		},
 		output: {
 			type: 'string',
@@ -19,7 +27,7 @@ const argumentOptions = yargs(hideBin(process.argv))
 		},
 		columns: {
 			type: 'string',
-			description: 'The output column names, comma separated list as string'
+			description: 'The output column names, comma separated list as string, By default every column will be exported'
 		}
 	});
 
