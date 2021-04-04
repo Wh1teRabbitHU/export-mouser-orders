@@ -88,11 +88,11 @@ async function fetchOrders(apiKey) {
 }
 
 async function exportOrders({ apiKey, output }) {
-	const orderItems = fetchOrders(apiKey);
+	const orderItems = await fetchOrders(apiKey);
 
-	console.log(`Order details are fetched, ${everyOrderItems.length} item details are collected, saving to csv...`);
+	console.log(`Order details are fetched, ${orderItems.length} item details are collected, saving to csv...`);
 
-	await exportToCsv(output, everyOrderItems);
+	await exportToCsv(output, orderItems);
 }
 
 module.exports = {
