@@ -1,0 +1,31 @@
+{
+  "name": "export-mouser-orders",
+  "version": "1.0.0",
+  "description": "Small script which can export your order details easily into a selected format",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wh1teRabbitHU/ExportMouserOrders.git"
+  },
+  "keywords": [
+    "mouser",
+    "order",
+    "export",
+    "script",
+    "csv"
+  ],
+  "author": "Tamas Ruszka",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Wh1teRabbitHU/ExportMouserOrders/issues"
+  },
+  "homepage": "https://github.com/Wh1teRabbitHU/ExportMouserOrders#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.1",
+    "optional-require": "^1.0.2",
+    "yargs": "^16.2.0"
+  }
+}
