@@ -16,7 +16,11 @@ const argumentOptions = yargs(hideBin(process.argv))
 		output: {
 			type: 'string',
 			description: 'Destination path to your export file'
-	}
+		},
+		columns: {
+			type: 'string',
+			description: 'The output column names, comma separated list as string'
+		}
 	});
 
 const options = Object.assign(externalOptions, argumentOptions.argv);

@@ -28,25 +28,33 @@ async function getOrderItems(apiKey, orderNumber) {
 	return response.data.OrderLines;
 }
 
-async function exportToCsv(outputPath, orderItems) {
+async function exportToCsv(orderItems, { output, columns }) {
 	if (orderItems.length == 0) {
 		console.warn('No order items are present, ending export process');
 
 		return;
 	}
 
+	let columnArray = columns.split(',').map((column) => column.trim());
+
 	let fileContent = '';
 
-	fileContent += Object.keys(orderItems[0]).join(';');
+	if (columnArray.length === 0) {
+		columnArray = Object.keys(orderItems[0]);
+	}
+
+	fileContent += columnArray.join(';');
 	fileContent += '\n';
 
 	for (item of orderItems) {
-		fileContent += Object.values(item).join(';');
+		let row = columnArray.map((column) => item[column]);
+
+		fileContent += row.join(';');
 		fileContent += '\n';
 	}
 
 	await new Promise((resolve, reject) => {
-		fs.writeFile(outputPath, fileContent, (err, data) => {
+		fs.writeFile(output, fileContent, (err, data) => {
 			if (err) {
 				console.error(err);
 				reject(err);
@@ -87,12 +95,12 @@ async function fetchOrders(apiKey) {
 	return everyOrderItems;
 }
 
-async function exportOrders({ apiKey, output }) {
+async function exportOrders({ apiKey, output, columns }) {
 	const orderItems = await fetchOrders(apiKey);
 
 	console.log(`Order details are fetched, ${orderItems.length} item details are collected, saving to csv...`);
 
-	await exportToCsv(output, orderItems);
+	await exportToCsv(orderItems, { output, columns });
 }
 
 module.exports = {

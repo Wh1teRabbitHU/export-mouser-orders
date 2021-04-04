@@ -42,6 +42,7 @@ You need a working API key from mouser, which can be requested [on this page](ht
 
 - 'apiKey': Required, you need to provide your API key here as a string. [How to generate my own API key?](#api-key)
 - 'output: Required, this string will determine the output file's path, without it, the script is unable to save the fetched details. The ./output/*.csv wildcard is added to the gitignore file, so your exports won't be visible in your local git history. __IMPORTANT__: You have to create the folder for the output, otherwise the export script will fail! (node won't create the path for you by default)
+- 'columns': Optional, default will put all available columns in your export. This is a comma separated string, which contains the column names for the export process. If the column doesn't exists, then it will fill up with empty values. (might be usefull for post process tasks). Example string: "OrderNumber, Manufacturer, MfrPartNumber, Description, Quantity, ExtendedPrice"
 
 ## Options file
 
@@ -50,7 +51,8 @@ You can provide an external option file if you don't want to type them into the 
 ```
 {
 	"apiKey": "YOUR_API_KEY",
-	"output": "OUTPUT_PATH"
+	"output": "./output/exported-orders.csv",
+	"columns: "OrderNumber, Manufacturer, MfrPartNumber, Description, Quantity, ExtendedPrice"
 }
 ```
 
