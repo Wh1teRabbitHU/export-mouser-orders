@@ -1,6 +1,6 @@
 {
   "name": "export-mouser-orders",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Small script which can export your order details easily into a selected format",
   "main": "index.js",
   "scripts": {
