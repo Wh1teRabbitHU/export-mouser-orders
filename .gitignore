@@ -106,3 +106,4 @@ dist
 # Application specific files
 options.json
 output/*.csv
+.vscode
