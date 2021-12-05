@@ -110,7 +110,7 @@ async function exportToCsv(orderItems, { output, columns }) {
 	});
 }
 
-async function fetchOrders({ orderApiKey, searchApiKey, extendedSearch }) {
+async function fetchOrders({ orderApiKey, searchApiKey, orderNumbers = [], extendedSearch }) {
 	if (typeof orderApiKey == 'undefined') {
 		log.error('You have to provide an API key to be able to fetch your order data!');
 
@@ -125,7 +125,12 @@ async function fetchOrders({ orderApiKey, searchApiKey, extendedSearch }) {
 	console.log(`Order history retrieved, ${orderHistory.length} orders in your account`);
 
 	for (order of orderHistory) {
-		const orderNumber = order.PoNumber;
+		const orderNumber = parseInt(order.PoNumber, 10);
+
+		if (orderNumbers.length > 0 && orderNumbers.indexOf(orderNumber) === -1) {
+			continue;
+		}
+
 		const orderItems = await getOrderItems(orderApiKey, orderNumber);
 
 		console.log(`Order details retrieved, [${orderNumber}]: ${orderItems.length} items`);
