@@ -58,7 +58,7 @@ You can provide an external option file if you don't want to type them into the 
 	"searchApiKey": "YOUR_SEARCH_API_KEY",
 	"extendedSearch": true,
 	"output": "./output/exported-orders.csv",
-	"columns: "OrderNumber, Manufacturer, MfrPartNumber, Description, Quantity, ExtendedPrice"
+	"columns": "OrderNumber, Category, Manufacturer, MfrPartNumber, Description, Quantity, ExtendedPrice, DataSheetUrl, ProductDetailUrl"
 }
 ```
 
