@@ -47,6 +47,7 @@ The search API key is only required when you want to request extended product in
 - __extendedSearch__: Requesting extended product informations, which can be saved in the export. This option is a boolean value, default is false
 - __output__: Required, this string will determine the output file's path, without this, the script wouldn't be able to save the fetched details. The ./output/*.csv wildcard is added to the gitignore file, so your exports won't be visible in your local git history. __IMPORTANT__: You have to create the folder for the output, otherwise the export script will fail! (node won't create the path for you by default)
 - __columns__: Optional, default will put all available columns in your export. This is a comma separated string, which contains the column names for the export process. If the column doesn't exists, then it will fill up with empty values. (might be usefull for post process tasks to have those already generated). Example string: "OrderNumber, Manufacturer, MfrPartNumber, Description, Quantity, ExtendedPrice"
+- __orderNumbers__: You can limit the request to the following order numbers. This is useful if you don't want to fetch the full history at once or only the latest few are interesting for you. If you leave it empty or don't provide this value, the script will fetch every orders
 
 ## Options file
 
@@ -58,7 +59,8 @@ You can provide an external option file if you don't want to type them into the 
 	"searchApiKey": "YOUR_SEARCH_API_KEY",
 	"extendedSearch": true,
 	"output": "./output/exported-orders.csv",
-	"columns": "OrderNumber, Category, Manufacturer, MfrPartNumber, Description, Quantity, ExtendedPrice, DataSheetUrl, ProductDetailUrl"
+	"columns": "OrderNumber, Category, Manufacturer, MfrPartNumber, Description, Quantity, ExtendedPrice, DataSheetUrl, ProductDetailUrl",
+	"orderNumbers": []
 }
 ```
 
